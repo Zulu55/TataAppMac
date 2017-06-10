@@ -11,7 +11,7 @@
             Padding="5">
             <Image
                 BackgroundColor="Transparent"
-                Source="tata.png">
+                Source="tatalogo.png">
             </Image>
             <ListView
                 BackgroundColor="{StaticResource MenuColor}"
