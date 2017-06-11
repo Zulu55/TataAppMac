@@ -11,7 +11,7 @@ namespace TataAppMac
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            MainPage = new MasterPage();
         }
 
         protected override void OnStart()
