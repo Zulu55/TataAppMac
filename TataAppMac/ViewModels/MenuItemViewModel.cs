@@ -1,11 +1,44 @@
-﻿namespace TataAppMac.ViewModels
+﻿using System;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using TataAppMac.Serviices;
+
+namespace TataAppMac.ViewModels
 {
     public class MenuItemViewModel
     {
-		public string Icon { get; set; }
+        #region Attributes
+        private NavigationService navigationService;
+        #endregion
 
-		public string Title { get; set; }
+        #region Properties
+        public string Icon { get; set; }
 
-		public string PageName { get; set; }
-	}
+        public string Title { get; set; }
+
+        public string PageName { get; set; }
+        #endregion
+
+        #region Constructors
+        public MenuItemViewModel()
+        {
+            navigationService = new NavigationService();
+        }
+        #endregion
+
+        #region Commands
+        public ICommand NavigateCommand
+        {
+            get { return new RelayCommand(Navigate); }
+        }
+
+        private void Navigate()
+        {
+            if (PageName == "LoginPage")
+            {
+                navigationService.SetMainPage("LoginPage");
+            }
+        }
+        #endregion
+    }
 }

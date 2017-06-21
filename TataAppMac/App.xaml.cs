@@ -1,19 +1,47 @@
-﻿using TataAppMac.Views;
+﻿using TataAppMac.Models;
+using TataAppMac.Serviices;
+using TataAppMac.Views;
 using Xamarin.Forms;
+using System;
+using TataAppMac.ViewModels;
 
 namespace TataAppMac
 {
     public partial class App : Application
     {
-        public static NavigationPage Navigator { get; internal set; }
+        #region Attributes
+        private DataService dataService; 
+        #endregion
 
-		public App()
+        #region Properties
+        public static NavigationPage Navigator { get; internal set; }
+        #endregion
+
+        #region Constructors
+        public App()
         {
             InitializeComponent();
 
-            MainPage = new MasterPage();
-        }
+            dataService = new DataService();
 
+            var employee = dataService.First<Employee>(false);
+
+            if (employee != null &&
+                employee.IsRemembered &&
+                employee.TokenExpires > DateTime.Now)
+            {
+                var mainViewModel = MainViewModel.GetInstance();
+                mainViewModel.Employee = employee;
+				MainPage = new MasterPage();
+			}
+            else
+            {
+                MainPage = new LoginPage();
+            }
+        }
+        #endregion
+
+        #region Methods
         protected override void OnStart()
         {
             // Handle when your app starts
@@ -28,5 +56,6 @@ namespace TataAppMac
         {
             // Handle when your app resumes
         }
+        #endregion
     }
 }
