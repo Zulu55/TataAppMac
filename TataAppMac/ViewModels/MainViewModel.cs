@@ -20,6 +20,12 @@ namespace TataAppMac.ViewModels
             get;
             set;
         }
+
+        public TimesViewModel Times
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region Constructors
@@ -54,7 +60,7 @@ namespace TataAppMac.ViewModels
             {
                 Title = "Register Time",
                 Icon = "ic_access_alarms.png",
-                PageName = "RegisterTimePage",
+                PageName = "TimesPage",
             });
 
             Menu.Add(new MenuItemViewModel

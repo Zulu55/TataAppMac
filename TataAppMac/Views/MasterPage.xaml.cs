@@ -16,6 +16,7 @@ namespace TataAppMac.Views
         {
             base.OnAppearing();
             App.Navigator = Navigator;
+            App.Master = this;
         }
     }
 }

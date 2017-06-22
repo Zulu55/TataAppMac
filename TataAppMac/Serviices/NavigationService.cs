@@ -1,4 +1,5 @@
-﻿using TataAppMac.Views;
+﻿using System.Threading.Tasks;
+using TataAppMac.Views;
 
 namespace TataAppMac.Serviices
 {
@@ -18,5 +19,19 @@ namespace TataAppMac.Serviices
 					break;
 			}
 		}
+
+		public async Task Navigate(string pageName)
+		{
+			App.Master.IsPresented = false;
+
+			switch (pageName)
+			{
+				case "TimesPage":
+					await App.Navigator.PushAsync(new TimesPage());
+					break;
+				default:
+					break;
+			}
+		}    
     }
 }

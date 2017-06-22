@@ -15,10 +15,12 @@ namespace TataAppMac
 
         #region Properties
         public static NavigationPage Navigator { get; internal set; }
-        #endregion
 
-        #region Constructors
-        public App()
+		public static MasterPage Master { get; internal set; }
+		#endregion
+
+		#region Constructors
+		public App()
         {
             InitializeComponent();
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using TataAppMac.Serviices;
@@ -32,11 +33,25 @@ namespace TataAppMac.ViewModels
             get { return new RelayCommand(Navigate); }
         }
 
-        private void Navigate()
+        private async void Navigate()
         {
             if (PageName == "LoginPage")
             {
                 navigationService.SetMainPage("LoginPage");
+            }
+            else
+            {
+                var mainViewModel = MainViewModel.GetInstance();
+
+                switch (PageName)
+                {
+                    case "TimesPage":
+                        mainViewModel.Times = new TimesViewModel();
+                        await navigationService.Navigate("TimesPage");               
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         #endregion
