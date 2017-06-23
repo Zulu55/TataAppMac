@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using TataAppMac.Models;
+using TataAppMac.Serviices;
 
 namespace TataAppMac.ViewModels
 {
     public class MainViewModel
     {
+        #region Attributes
+        NavigationService navigationService;
+        #endregion
+
         #region Properties
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
@@ -26,12 +33,20 @@ namespace TataAppMac.ViewModels
             get;
             set;
         }
+
+        public NewTimeViewModel NewTime
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region Constructors
         public MainViewModel()
         {
             instance = this;
+
+            navigationService = new NavigationService();
 
             Menu = new ObservableCollection<MenuItemViewModel>();
             Login = new LoginViewModel();
@@ -54,7 +69,7 @@ namespace TataAppMac.ViewModels
 		#endregion
 
 		#region Methods
-		private void LoadMenu()
+		void LoadMenu()
         {
             Menu.Add(new MenuItemViewModel
             {
@@ -83,6 +98,19 @@ namespace TataAppMac.ViewModels
                 Icon = "ic_exit_to_app.png",
                 PageName = "LoginPage",
             });
+        }
+        #endregion
+
+        #region Commands
+        public ICommand NewTimeCommand
+        {
+            get { return new RelayCommand(GoNewTime); }
+        }
+
+        async void GoNewTime()
+        {
+            NewTime = new NewTimeViewModel();
+            await navigationService.Navigate("NewTimePage");   
         }
         #endregion
     }

@@ -147,6 +147,15 @@ namespace TataAppMac.ViewModels
             IsRunning = true;
             IsEnabled = false;
 
+            var checkConnetion = await apiService.CheckConnection();
+            if (!checkConnetion.IsSuccess)
+            {
+                IsRunning = false;
+				IsEnabled = true;
+				await dialogService.ShowMessage("Error", checkConnetion.Message);
+				return;
+			}
+
             var urlAPI = Application.Current.Resources["URLAPI"].ToString();
 
             var token = await apiService.GetToken(

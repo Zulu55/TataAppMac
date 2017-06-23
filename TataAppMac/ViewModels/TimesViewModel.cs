@@ -104,6 +104,15 @@
 		private async Task LoadTimes()
 		{
 			IsRefreshing = true;
+
+			var checkConnetion = await apiService.CheckConnection();
+			if (!checkConnetion.IsSuccess)
+			{
+				IsRefreshing = false;
+				await dialogService.ShowMessage("Error", checkConnetion.Message);
+				return;
+			}
+
 			var urlAPI = Application.Current.Resources["URLAPI"].ToString();
 			var mainViewModel = MainViewModel.GetInstance();
 			var employee = mainViewModel.Employee;
@@ -130,7 +139,9 @@
 		private void ReloadTimes()
 		{
 			MyTimes.Clear();
-			foreach (var time in times)
+			foreach (var time in times.
+                                 OrderByDescending(t => t.DateReported).
+                                 ThenBy(t => t.From))
 			{
 				MyTimes.Add(new TimeItemViewModel
 				{
@@ -165,7 +176,9 @@
 			MyTimes.Clear();
 			foreach (var time in times
 					 .Where(t => t.Project.Description.ToLower().Contains(Filter.ToLower()) ||
-								 t.Activity.Description.ToLower().Contains(Filter.ToLower())))
+								 t.Activity.Description.ToLower().Contains(Filter.ToLower()))
+					 .OrderByDescending(t => t.DateReported)
+					 .ThenBy(t => t.From))
 			{
 				MyTimes.Add(new TimeItemViewModel
 				{
