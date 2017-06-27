@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using TataAppMac.Views;
-
-namespace TataAppMac.Serviices
+﻿namespace TataAppMac.Serviices
 {
-    public class NavigationService
+    using System.Threading.Tasks;
+	using TataAppMac.Views;
+
+	public class NavigationService
     {
 		public void SetMainPage(string pageName)
 		{
@@ -14,8 +14,6 @@ namespace TataAppMac.Serviices
 					break;
 				case "LoginPage":
 					App.Current.MainPage = new LoginPage();
-					break;
-				default:
 					break;
 			}
 		}
@@ -32,9 +30,12 @@ namespace TataAppMac.Serviices
 				case "NewTimePage":
 					await App.Navigator.PushAsync(new NewTimePage());
 					break;
-				default:
-					break;
 			}
-		}    
+		}
+
+        public async Task Back()
+        {
+            await App.Navigator.PopAsync();
+        }
     }
 }
