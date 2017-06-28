@@ -115,6 +115,7 @@
       <DependentUpon>LocationsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\LocationsViewModel.cs" />
+    <Compile Include="Models\Location.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Net.Http.Extensions">
