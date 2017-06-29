@@ -8,7 +8,7 @@ using Xamarin.Forms.Platform.iOS;
 using TataAppMac.Views;
 using TataAppMac.Models;
 
-[assembly: ExportRenderer(typeof(LoginPage), typeof(TataAppMac.iOS.LoginPageRenderer))]
+[assembly: ExportRenderer(typeof(LoginFacebookPage), typeof(TataAppMac.iOS.LoginPageRenderer))]
 
 namespace TataAppMac.iOS
 {

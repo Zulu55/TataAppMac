@@ -47,7 +47,10 @@
 						mainViewModel.Times = new TimesViewModel();
 						break;
 					case "LocationsPage":
-                        mainViewModel.Locations = new LocationsViewModel();
+						mainViewModel.Locations = new LocationsViewModel();
+						break;
+					case "EmployeesPage":
+                        mainViewModel.Employees = new EmployeesViewModel();
 						break;
 				}
 

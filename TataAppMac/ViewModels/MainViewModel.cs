@@ -44,6 +44,18 @@
             get;
             set;
         }
+
+        public EmployeesViewModel Employees
+        {
+            get;
+            set;
+        }
+
+        public EmployeeDetailViewModel EmployeeDetail
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region Constructors
@@ -85,9 +97,9 @@
 
             Menu.Add(new MenuItemViewModel
             {
-                Title = "Sickleaves",
-                Icon = "ic_favorite.png",
-                PageName = "SickleavesPage",
+                Title = "Employess",
+                Icon = "ic_people_outline.png",
+                PageName = "EmployeesPage",
             });
 
             Menu.Add(new MenuItemViewModel
